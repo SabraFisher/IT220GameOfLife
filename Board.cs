@@ -25,5 +25,48 @@ namespace IT220GameOfLife
             _height = height;
             _cells = new bool[width, height];
         }
+
+        // Indexer to access individual cells
+        public bool this[int x, int y]
+        {
+            get => _cells[x, y];
+            set => _cells[x, y] = value;
+        }
+
+        // Get the length of a dimension (0 for width, 1 for height)
+        public int GetLength(int dimension)
+        {
+            return _cells.GetLength(dimension);
+        }
+
+        // Display the board in the console
+        public void Display()
+        {
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    Console.SetCursorPosition(x, y);
+                    if (_cells[x, y])
+                        Console.BackgroundColor = ConsoleColor.White;
+                    else
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write(" ");
+                }
+            }
+            Console.ResetColor();
+        }
+
+        // Clear the board (set all cells to dead)
+        public void Clear()
+        {
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    _cells[x, y] = false;
+                }
+            }
+        }
     }
 }

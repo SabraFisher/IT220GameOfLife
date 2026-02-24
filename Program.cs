@@ -7,7 +7,19 @@ namespace IT220GameOfLife
     {
         static void Main(string[] args)
         {
-            
+            // Display a welcome message and wait for the user to start the game
+            Console.WriteLine("Conway's Game of Life");
+            Console.WriteLine("Press any key to start...");
+            Console.ReadKey();
+
+            // Create a new board with specified dimensions
+            Board board = new Board(60, 25);
+
+            // Display the board
+            board.Display();
+
+            // Example: Clear the board if needed
+            // board.Clear();
         }
     }
 }
