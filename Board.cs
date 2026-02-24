@@ -42,18 +42,34 @@ namespace IT220GameOfLife
         // Display the board in the console
         public void Display()
         {
+            Console.Clear();
+
+            // Each cell takes 3 characters wide (│ █ │) and 2 lines tall
+            for (int y = 0; y < _height; y++)
+            {
+                // Draw top border of cells
+                for (int x = 0; x < _width; x++)
+                {
+                    Console.Write(x == 0 ? "┌─" : "┬─");
+                }
+                Console.WriteLine("┐");
+
+                // Draw cell content
+                for (int x = 0; x < _width; x++)
+                {
+                    Console.Write("│");
+                    Console.Write(_cells[x, y] ? "█" : " ");
+                }
+                Console.WriteLine("│");
+            }
+
+            // Draw bottom border
             for (int x = 0; x < _width; x++)
             {
-                for (int y = 0; y < _height; y++)
-                {
-                    Console.SetCursorPosition(x, y);
-                    if (_cells[x, y])
-                        Console.BackgroundColor = ConsoleColor.White;
-                    else
-                        Console.BackgroundColor = ConsoleColor.Black;
-                    Console.Write(" ");
-                }
+                Console.Write(x == 0 ? "└─" : "┴─");
             }
+            Console.WriteLine("┘");
+
             Console.ResetColor();
         }
 

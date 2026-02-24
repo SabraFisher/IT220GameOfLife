@@ -13,7 +13,7 @@ namespace IT220GameOfLife
             Console.ReadKey();
 
             // Create a new board with specified dimensions
-            Board board = new Board(60, 25);
+            Board board = new Board(40, 10);
 
             // Display the board
             board.Display();
