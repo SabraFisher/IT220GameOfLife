@@ -5,6 +5,7 @@ namespace IT220GameOfLife
 {
     internal class Program
     {
+        // Entry point of the application
         static void Main(string[] args)
         {
             // Display a welcome message and wait for the user to start the game
