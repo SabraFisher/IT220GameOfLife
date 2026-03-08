@@ -84,5 +84,32 @@ namespace IT220GameOfLife
                 }
             }
         }
+
+        //Write a function to count the number of live neighbors for a given cell
+        public int CountLiveNeighbors(int x, int y)
+        {
+            int liveNeighbors = 0;
+            // Check all 8 neighbors around the cell
+            for (int dx = -1; dx <= 1; dx++)
+            {
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    // Skip the cell itself
+                    if (dx == 0 && dy == 0)
+                        continue;
+                    int neighborX = x + dx;
+                    int neighborY = y + dy;
+                    // Check if the neighbor is within bounds
+                    if (neighborX >= 0 && neighborX < _width && neighborY >= 0 && neighborY < _height)
+                    {
+                        if (_cells[neighborX, neighborY])
+                        {
+                            liveNeighbors++;
+                        }
+                    }
+                }
+            }
+            return liveNeighbors;
+        }
     }
 }

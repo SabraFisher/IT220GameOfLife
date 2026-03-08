@@ -19,6 +19,11 @@ namespace IT220GameOfLife
             // Display the board
             board.Display();
 
+            // Example: Count live neighbors for the cell at (1, 1)
+            board.CountLiveNeighbors(1, 1);
+            // Display the count of live neighbors for the cell at (1, 1)
+            Console.WriteLine($"Live neighbors of cell (1, 1): {board.CountLiveNeighbors(1, 1)}");
+
             // Example: Clear the board if needed
             // board.Clear();
         }
