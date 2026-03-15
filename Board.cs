@@ -85,6 +85,53 @@ namespace IT220GameOfLife
             }
         }
 
+        // Randomize the initial state of the board
+        public void Randomize(double livingProbability = 0.25)
+        {
+            Random rand = new Random();
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    _cells[x, y] = rand.NextDouble() < livingProbability;
+                }
+            }
+        }
+
+        // Applies Conway's internal rules to progress the simulation
+        public void NextGeneration()
+        {
+            bool[,] nextGen = new bool[_width, _height];
+
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    int liveNeighbors = CountLiveNeighbors(x, y);
+                    bool isAlive = _cells[x, y];
+
+                    // Rule 1: Underpopulation (dies)
+                    if (isAlive && liveNeighbors < 2)
+                        nextGen[x, y] = false;
+                    // Rule 2: Next generation (lives)
+                    else if (isAlive && (liveNeighbors == 2 || liveNeighbors == 3))
+                        nextGen[x, y] = true;
+                    // Rule 3: Overpopulation (dies)
+                    else if (isAlive && liveNeighbors > 3)
+                        nextGen[x, y] = false;
+                    // Rule 4: Reproduction (becomes alive)
+                    else if (!isAlive && liveNeighbors == 3)
+                        nextGen[x, y] = true;
+                    // Otherwise it stays dead
+                    else
+                        nextGen[x, y] = isAlive;
+                }
+            }
+
+            // Replace the current grid with the new state
+            _cells = nextGen;
+        }
+
         //Write a function to count the number of live neighbors for a given cell
         public int CountLiveNeighbors(int x, int y)
         {
