@@ -113,15 +113,19 @@ namespace IT220GameOfLife
                     // Rule 1: Underpopulation (dies)
                     if (isAlive && liveNeighbors < 2)
                         nextGen[x, y] = false;
+
                     // Rule 2: Next generation (lives)
                     else if (isAlive && (liveNeighbors == 2 || liveNeighbors == 3))
                         nextGen[x, y] = true;
+
                     // Rule 3: Overpopulation (dies)
                     else if (isAlive && liveNeighbors > 3)
                         nextGen[x, y] = false;
+
                     // Rule 4: Reproduction (becomes alive)
                     else if (!isAlive && liveNeighbors == 3)
                         nextGen[x, y] = true;
+
                     // Otherwise it stays dead
                     else
                         nextGen[x, y] = isAlive;
